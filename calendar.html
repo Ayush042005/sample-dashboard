@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .day-cell {
+            position: relative;
+            height: 80px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .day-cell:hover {
+            background-color: #f1f5f9;
+        }
+        .day-cell .date {
+            font-weight: 600;
+            display: block;
+            margin-top: 5px;
+        }
+        .day-cell.today {
+            background-color: #e0e7ff;
+            border-color: #4f46e5;
+        }
+        .day-cell.other-month {
+            color: #94a3b8;
+        }
+        .event-dot {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+        .event-list {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: none;
+        }
+        .day-cell.has-events:hover .event-list {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex flex-col lg:flex-row min-h-screen">
+
+        <aside class="w-full lg:w-64 bg-white p-6 shadow-md lg:shadow-none flex-shrink-0">
+            <div class="flex items-center space-x-2 mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.467 9.53 4.5 8 4.5c-1.625 0-3.245.98-4 2.5a3.5 3.5 0 000 6.5c.755 1.52 2.375 2.5 4 2.5 1.53 0 2.832-.967 4-2.5m0-13C13.168 5.467 14.47 4.5 16 4.5c1.625 0 3.245.98 4 2.5a3.5 3.5 0 010 6.5c-.755 1.52-2.375 2.5-4 2.5-1.53 0-2.832-.967-4-2.5" />
+                </svg>
+                <span class="text-2xl font-bold text-indigo-700" contenteditable="true">Student Hub</span>
+            </div>
+
+            <nav>
+                <ul>
+                    <li class="mb-2">
+                        <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                            </svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="courses.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                            </svg>
+                            <span>Courses</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="calendar.html" class="flex items-center space-x-3 p-3 rounded-lg text-indigo-700 bg-indigo-50 font-semibold">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Calendar</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="assignments.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 000-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Assignments</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="grades.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.5 1.5 0 01-1.316 1.056A1.5 1.5 0 005.155 5.672L.4 13.916a1.5 1.5 0 001.272 2.215h16.634a1.5 1.5 0 001.272-2.215l-4.755-8.244a1.5 1.5 0 00-1.316-1.056z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Grades</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="goals.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Goals</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-4 lg:p-8 overflow-y-auto custom-scrollbar">
+            
+            <header class="flex items-center justify-between mb-8">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2.5 pl-10 bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-slate-400 hover:text-indigo-500 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <img id="user-avatar" src="https://placehold.co/40x40/c7d2fe/4f46e5?text=JD" onerror="this.src='https://placehold.co/40x40/c7d2fe/4f46e5?text=JD'" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
+                        <span id="user-name" class="font-semibold text-slate-700 hidden sm:block" contenteditable="true">Jane Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <h1 class="text-3xl font-bold text-slate-800 mb-6" contenteditable="true">My Calendar</h1>
+            
+            <div id="calendar-content" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-month" class="p-2 rounded-full hover:bg-slate-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <h2 id="current-month-year" class="text-xl font-bold text-slate-800" contenteditable="true"></h2>
+                    <button id="next-month" class="p-2 rounded-full hover:bg-slate-100 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-7 text-center text-sm font-semibold text-slate-500 border-b border-slate-200">
+                    <span class="p-2">Sun</span>
+                    <span class="p-2">Mon</span>
+                    <span class="p-2">Tue</span>
+                    <span class="p-2">Wed</span>
+                    <span class="p-2">Thu</span>
+                    <span class="p-2">Fri</span>
+                    <span class="p-2">Sat</span>
+                </div>
+                
+                <div id="calendar-grid" class="grid grid-cols-7">
+                    <!-- Calendar days will be generated here by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Function to update the avatar initials based on the name
+        function updateAvatarInitials() {
+            const userNameSpan = document.getElementById('user-name');
+            const userAvatarImg = document.getElementById('user-avatar');
+            if (userNameSpan && userAvatarImg) {
+                const fullName = userNameSpan.textContent.trim().toUpperCase();
+                let initials = '';
+                if (fullName) {
+                    const nameParts = fullName.split(' ');
+                    initials += nameParts[0].charAt(0);
+                    if (nameParts.length > 1) {
+                        initials += nameParts[nameParts.length - 1].charAt(0);
+                    }
+                }
+                const newAvatarSrc = `https://placehold.co/40x40/c7d2fe/4f46e5?text=${initials}`;
+                userAvatarImg.src = newAvatarSrc;
+                userAvatarImg.onerror = `this.src='${newAvatarSrc}'`;
+            }
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const contentDiv = document.getElementById('calendar-content');
+            const allElements = contentDiv.querySelectorAll('[contenteditable="true"], p, h3, li');
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                allElements.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    const parentContainer = item.closest('.search-target') || item;
+                    if (itemText.includes(searchTerm) || searchTerm === '') {
+                        parentContainer.style.display = '';
+                    } else {
+                        parentContainer.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        function getAssignments() {
+            const assignments = localStorage.getItem('assignments');
+            return assignments ? JSON.parse(assignments) : [];
+        }
+
+        function getAssignmentsByDate() {
+            const assignments = getAssignments();
+            const assignmentsByDate = {};
+            assignments.forEach(assignment => {
+                if (assignment.dueDate) {
+                    if (!assignmentsByDate[assignment.dueDate]) {
+                        assignmentsByDate[assignment.dueDate] = [];
+                    }
+                    assignmentsByDate[assignment.dueDate].push(assignment);
+                }
+            });
+            return assignmentsByDate;
+        }
+
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            const monthYearDisplay = document.getElementById('current-month-year');
+            const calendarGrid = document.getElementById('calendar-grid');
+            const assignmentsByDate = getAssignmentsByDate();
+
+            calendarGrid.innerHTML = '';
+            
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            const firstDayOfMonth = new Date(year, month, 1);
+            const lastDayOfMonth = new Date(year, month + 1, 0);
+
+            const startDayIndex = firstDayOfMonth.getDay();
+            const lastDate = lastDayOfMonth.getDate();
+
+            monthYearDisplay.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            // Render previous month's days
+            const prevMonthLastDay = new Date(year, month, 0).getDate();
+            for (let i = startDayIndex - 1; i >= 0; i--) {
+                const day = document.createElement('div');
+                day.className = 'day-cell p-2 text-sm other-month';
+                day.textContent = prevMonthLastDay - i;
+                calendarGrid.appendChild(day);
+            }
+
+            // Render current month's days
+            for (let i = 1; i <= lastDate; i++) {
+                const day = document.createElement('div');
+                day.className = 'day-cell p-2 text-sm';
+                day.dataset.date = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                
+                if (new Date().getDate() === i && new Date().getMonth() === month && new Date().getFullYear() === year) {
+                    day.classList.add('today');
+                }
+
+                const dateText = document.createElement('span');
+                dateText.className = 'date';
+                dateText.textContent = i;
+                day.appendChild(dateText);
+                
+                const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                if (assignmentsByDate[formattedDate]) {
+                    const eventDot = document.createElement('div');
+                    eventDot.className = 'event-dot';
+                    day.appendChild(eventDot);
+                    day.classList.add('has-events');
+                    
+                    const eventList = document.createElement('div');
+                    eventList.className = 'event-list';
+                    let listHtml = `<h4 class="font-bold text-sm mb-1">Assignments:</h4>`;
+                    assignmentsByDate[formattedDate].forEach(assignment => {
+                        listHtml += `<p class="text-xs">${assignment.name}</p>`;
+                    });
+                    eventList.innerHTML = listHtml;
+                    day.appendChild(eventList);
+                }
+
+                calendarGrid.appendChild(day);
+            }
+
+            // Render next month's days
+            const totalDays = startDayIndex + lastDate;
+            const remainingDays = 42 - totalDays; // 6 rows of 7 days
+            for (let i = 1; i <= remainingDays; i++) {
+                const day = document.createElement('div');
+                day.className = 'day-cell p-2 text-sm other-month';
+                day.textContent = i;
+                calendarGrid.appendChild(day);
+            }
+        }
+        
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        // Event listeners for month navigation
+        document.getElementById('prev-month').addEventListener('click', () => changeMonth(-1));
+        document.getElementById('next-month').addEventListener('click', () => changeMonth(1));
+
+        // Set up initial view and event listeners on window load
+        window.onload = function() {
+            const userNameSpan = document.getElementById('user-name');
+            updateAvatarInitials();
+            if (userNameSpan) {
+                userNameSpan.addEventListener('input', updateAvatarInitials);
+            }
+            setupSearch();
+            renderCalendar();
+        };
+    </script>
+</body>
+</html>
