@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-    <!-- Tailwind CSS CDN -->
+    <title contenteditable="true">Student Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chart.js CDN for charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -35,23 +32,20 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- Main Container -->
     <div class="flex flex-col lg:flex-row min-h-screen">
 
-        <!-- Sidebar -->
         <aside class="w-full lg:w-64 bg-white p-6 shadow-md lg:shadow-none flex-shrink-0">
             <div class="flex items-center space-x-2 mb-8">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.467 9.53 4.5 8 4.5c-1.625 0-3.245.98-4 2.5a3.5 3.5 0 000 6.5c.755 1.52 2.375 2.5 4 2.5 1.53 0 2.832-.967 4-2.5m0-13C13.168 5.467 14.47 4.5 16 4.5c1.625 0 3.245.98 4 2.5a3.5 3.5 0 010 6.5c-.755 1.52-2.375 2.5-4 2.5-1.53 0-2.832-.967-4-2.5" />
                 </svg>
-                <span class="text-2xl font-bold text-indigo-700">Student Hub</span>
+                <span class="text-2xl font-bold text-indigo-700" contenteditable="true">Student Hub</span>
             </div>
 
-            <!-- Navigation Links -->
             <nav>
                 <ul>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-indigo-700 bg-indigo-50 font-semibold">
+                        <a href="index.html" class="flex items-center space-x-3 p-3 rounded-lg text-indigo-700 bg-indigo-50 font-semibold">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                             </svg>
@@ -59,7 +53,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <a href="courses.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                             </svg>
@@ -67,7 +61,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <a href="calendar.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                             </svg>
@@ -75,7 +69,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <a href="assignments.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                                 <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 000-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
@@ -84,21 +78,27 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <a href="grades.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.5 1.5 0 01-1.316 1.056A1.5 1.5 0 005.155 5.672L.4 13.916a1.5 1.5 0 001.272 2.215h16.634a1.5 1.5 0 001.272-2.215l-4.755-8.244a1.5 1.5 0 00-1.316-1.056z" clip-rule="evenodd" />
                             </svg>
                             <span>Grades</span>
                         </a>
                     </li>
+                    <li class="mb-2">
+                        <a href="goals.html" class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>Goals</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
         <main class="flex-1 p-4 lg:p-8 overflow-y-auto custom-scrollbar">
             
-            <!-- Top Header with Search and Profile -->
             <header class="flex items-center justify-between mb-8">
                 <div class="relative w-full max-w-md">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -106,7 +106,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <input type="text" placeholder="Search..." class="w-full p-2.5 pl-10 bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
+                    <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2.5 pl-10 bg-white border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
                 </div>
                 <div class="flex items-center space-x-4">
                     <button class="p-2 text-slate-400 hover:text-indigo-500 transition-colors duration-200">
@@ -115,16 +115,14 @@
                         </svg>
                     </button>
                     <div class="flex items-center space-x-2">
-                        <img src="https://placehold.co/40x40/c7d2fe/4f46e5?text=AV" onerror="this.src='https://placehold.co/40x40/c7d2fe/4f46e5?text=AV'" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
-                        <span class="font-semibold text-slate-700 hidden sm:block">Jane Doe</span>
+                        <img id="user-avatar" src="https://placehold.co/40x40/c7d2fe/4f46e5?text=JD" onerror="this.src='https://placehold.co/40x40/c7d2fe/4f46e5?text=JD'" alt="User Avatar" class="w-10 h-10 rounded-full object-cover">
+                        <span id="user-name" class="font-semibold text-slate-700 hidden sm:block" contenteditable="true">Jane Doe</span>
                     </div>
                 </div>
             </header>
 
-            <!-- Dashboard Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <!-- Stat Card 1: Total Courses -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div id="content-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="p-3 bg-indigo-100 rounded-full text-indigo-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -132,64 +130,58 @@
                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <span class="text-xs text-slate-500 font-medium">Total Courses</span>
+                        <span class="text-xs text-slate-500 font-medium" contenteditable="true">Total Courses</span>
                     </div>
-                    <div class="text-4xl font-bold text-slate-800">5</div>
+                    <div class="text-4xl font-bold text-slate-800" contenteditable="true">5</div>
                 </div>
-                <!-- Stat Card 2: Assignments Due -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="p-3 bg-orange-100 rounded-full text-orange-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <span class="text-xs text-slate-500 font-medium">Assignments Due</span>
+                        <span class="text-xs text-slate-500 font-medium" contenteditable="true">Assignments Due</span>
                     </div>
-                    <div class="text-4xl font-bold text-slate-800">3</div>
+                    <div class="text-4xl font-bold text-slate-800" contenteditable="true">3</div>
                 </div>
-                <!-- Stat Card 3: Avg Grade -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="p-3 bg-blue-100 rounded-full text-blue-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0h6m-9 0h2a2 2 0 002-2v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2zm6 0h6a2 2 0 002-2v-6a2 2 0 00-2-2h-2a2 2 0 00-2 2v6a2 2 0 002 2z" />
                             </svg>
                         </div>
-                        <span class="text-xs text-slate-500 font-medium">Avg. Grade</span>
+                        <span class="text-xs text-slate-500 font-medium" contenteditable="true">Avg. Grade</span>
                     </div>
-                    <div class="text-4xl font-bold text-slate-800">B+</div>
+                    <div class="text-4xl font-bold text-slate-800" contenteditable="true">B+</div>
                 </div>
-                <!-- Stat Card 4: Unread Notifications -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center space-x-4 mb-4">
                         <div class="p-3 bg-red-100 rounded-full text-red-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                            </svg>
+                        </svg>
                         </div>
-                        <span class="text-xs text-slate-500 font-medium">Unread Notifications</span>
+                        <span class="text-xs text-slate-500 font-medium" contenteditable="true">Unread Notifications</span>
                     </div>
-                    <div class="text-4xl font-bold text-slate-800">7</div>
+                    <div class="text-4xl font-bold text-slate-800" contenteditable="true">7</div>
                 </div>
             </div>
 
-            <!-- Charts and other content -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Performance Trend Chart -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div id="additional-content" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-700">Performance Trend</h3>
-                        <span class="text-sm text-slate-500">Last 6 months</span>
+                        <h3 class="text-lg font-semibold text-slate-700" contenteditable="true">Performance Trend</h3>
+                        <span class="text-sm text-slate-500" contenteditable="true">Last 6 months</span>
                     </div>
                     <div>
                         <canvas id="performanceChart"></canvas>
                     </div>
                 </div>
-                <!-- Assignments by Status Donut Chart -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-700">Assignments by Status</h3>
+                        <h3 class="text-lg font-semibold text-slate-700" contenteditable="true">Assignments by Status</h3>
                     </div>
                     <div class="flex justify-center items-center h-48">
                         <canvas id="assignmentsChart"></canvas>
@@ -197,100 +189,98 @@
                     <div class="flex justify-center space-x-4 mt-4 text-sm font-medium">
                         <div class="flex items-center space-x-2">
                             <span class="block w-3 h-3 rounded-full bg-blue-500"></span>
-                            <span>Completed</span>
+                            <span contenteditable="true">Completed</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="block w-3 h-3 rounded-full bg-orange-500"></span>
-                            <span>In Progress</span>
+                            <span contenteditable="true">In Progress</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <span class="block w-3 h-3 rounded-full bg-red-500"></span>
-                            <span>Overdue</span>
+                            <span contenteditable="true">Overdue</span>
                         </div>
                     </div>
                 </div>
-                <!-- Upcoming Deadlines list -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-700">Upcoming Deadlines</h3>
+                        <h3 class="text-lg font-semibold text-slate-700" contenteditable="true">Upcoming Deadlines</h3>
                     </div>
-                    <ul class="divide-y divide-slate-100">
+                    <ul class="divide-y divide-slate-100" id="deadlines-list">
                         <li class="flex items-center justify-between py-3">
                             <div class="flex items-center space-x-3">
                                 <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-                                <div>
-                                    <p class="font-medium">Calculus I Final Paper</p>
-                                    <p class="text-sm text-slate-500">Due: May 20, 2024</p>
+                                <div class="search-target">
+                                    <p class="font-medium" contenteditable="true">Calculus I Final Paper</p>
+                                    <p class="text-sm text-slate-500" contenteditable="true">Due: May 20, 2024</p>
                                 </div>
                             </div>
-                            <span class="text-xs text-slate-400">10:00 AM</span>
+                            <span class="text-xs text-slate-400" contenteditable="true">10:00 AM</span>
                         </li>
                         <li class="flex items-center justify-between py-3">
                             <div class="flex items-center space-x-3">
                                 <div class="w-2 h-2 rounded-full bg-indigo-500"></div>
-                                <div>
-                                    <p class="font-medium">Intro to Psychology Midterm</p>
-                                    <p class="text-sm text-slate-500">Due: May 22, 2024</p>
+                                <div class="search-target">
+                                    <p class="font-medium" contenteditable="true">Intro to Psychology Midterm</p>
+                                    <p class="text-sm text-slate-500" contenteditable="true">Due: May 22, 2024</p>
                                 </div>
                             </div>
-                            <span class="text-xs text-slate-400">02:00 PM</span>
+                            <span class="text-xs text-slate-400" contenteditable="true">02:00 PM</span>
                         </li>
                         <li class="flex items-center justify-between py-3">
                             <div class="flex items-center space-x-3">
                                 <div class="w-2 h-2 rounded-full bg-blue-500"></div>
-                                <div>
-                                    <p class="font-medium">Data Structures Project</p>
-                                    <p class="text-sm text-slate-500">Due: May 25, 2024</p>
+                                <div class="search-target">
+                                    <p class="font-medium" contenteditable="true">Data Structures Project</p>
+                                    <p class="text-sm text-slate-500" contenteditable="true">Due: May 25, 2024</p>
                                 </div>
                             </div>
-                            <span class="text-xs text-slate-400">11:59 PM</span>
+                            <span class="text-xs text-slate-400" contenteditable="true">11:59 PM</span>
                         </li>
                     </ul>
                 </div>
-                <!-- Recent Grades Card -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 search-item">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-700">Recent Grades</h3>
+                        <h3 class="text-lg font-semibold text-slate-700" contenteditable="true">Recent Grades</h3>
                     </div>
                     <ul class="space-y-4">
                         <li class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 search-target">
                                 <div class="p-2 bg-indigo-100 rounded-full text-indigo-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1.172l-1.414 1.414a1 1 0 00-.707.293L3 10.586V17a1 1 0 001 1h4a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h4a1 1 0 001-1v-6.414l-4.879-4.879A1 1 0 0010.586 4.172L10 3.586V3a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-sm">Calculus I</p>
+                                    <p class="font-medium text-sm" contenteditable="true">Calculus I</p>
                                 </div>
                             </div>
-                            <div class="bg-indigo-50 text-indigo-600 font-bold px-3 py-1 rounded-full text-xs">92%</div>
+                            <div class="bg-indigo-50 text-indigo-600 font-bold px-3 py-1 rounded-full text-xs" contenteditable="true">92%</div>
                         </li>
                         <li class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 search-target">
                                 <div class="p-2 bg-blue-100 rounded-full text-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-sm">Intro to Psych</p>
+                                    <p class="font-medium text-sm" contenteditable="true">Intro to Psych</p>
                                 </div>
                             </div>
-                            <div class="bg-blue-50 text-blue-600 font-bold px-3 py-1 rounded-full text-xs">88%</div>
+                            <div class="bg-blue-50 text-blue-600 font-bold px-3 py-1 rounded-full text-xs" contenteditable="true">88%</div>
                         </li>
                         <li class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
+                            <div class="flex items-center space-x-3 search-target">
                                 <div class="p-2 bg-orange-100 rounded-full text-orange-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V4a1 1 0 00-1-1H3zm13 4a1 1 0 100 2h1a1 1 0 100-2h-1zm-1 4a1 1 0 100 2h2a1 1 0 100-2h-2zm-2-4a1 1 0 100 2h5a1 1 0 100-2h-5zm-2 4a1 1 0 100 2h7a1 1 0 100-2h-7z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium text-sm">Data Structures</p>
+                                    <p class="font-medium text-sm" contenteditable="true">Data Structures</p>
                                 </div>
                             </div>
-                            <div class="bg-orange-50 text-orange-600 font-bold px-3 py-1 rounded-full text-xs">76%</div>
+                            <div class="bg-orange-50 text-orange-600 font-bold px-3 py-1 rounded-full text-xs" contenteditable="true">76%</div>
                         </li>
                     </ul>
                 </div>
@@ -299,6 +289,58 @@
     </div>
 
     <script>
+        // Function to update the avatar initials based on the name
+        function updateAvatarInitials() {
+            // Get the name from the editable span element
+            const userNameSpan = document.getElementById('user-name');
+            const userAvatarImg = document.getElementById('user-avatar');
+            if (userNameSpan && userAvatarImg) {
+                // Get the text content, trim whitespace, and convert to uppercase
+                const fullName = userNameSpan.textContent.trim().toUpperCase();
+                let initials = '';
+
+                if (fullName) {
+                    // Split the full name by space
+                    const nameParts = fullName.split(' ');
+                    // Get the first letter of the first name
+                    initials += nameParts[0].charAt(0);
+                    // If there's a last name, get its first letter as well
+                    if (nameParts.length > 1) {
+                        initials += nameParts[nameParts.length - 1].charAt(0);
+                    }
+                }
+
+                // Construct the new URL for the placeholder image
+                const newAvatarSrc = `https://placehold.co/40x40/c7d2fe/4f46e5?text=${initials}`;
+
+                // Update the image source and onerror attribute
+                userAvatarImg.src = newAvatarSrc;
+                userAvatarImg.onerror = `this.src='${newAvatarSrc}'`;
+            }
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTargets = document.querySelectorAll('.search-item, .search-target');
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                searchTargets.forEach(item => {
+                    // Find the main container for the item
+                    const container = item.closest('.search-item');
+                    if (container) {
+                        const itemText = item.textContent.toLowerCase();
+                        if (itemText.includes(searchTerm) || searchTerm === '') {
+                            container.style.display = ''; // Show the parent container
+                        } else {
+                            container.style.display = 'none'; // Hide the parent container
+                        }
+                    }
+                });
+            });
+        }
+
         // Data for the charts
         const performanceData = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
@@ -375,7 +417,7 @@
             }
         };
 
-        // Render the charts on window load
+        // Render the charts and set up event listeners on window load
         window.onload = function() {
             const performanceChart = new Chart(
                 document.getElementById('performanceChart'),
@@ -385,6 +427,18 @@
                 document.getElementById('assignmentsChart'),
                 assignmentsConfig
             );
+
+            // Get the editable name element
+            const userNameSpan = document.getElementById('user-name');
+            // Initial call to set the avatar
+            updateAvatarInitials();
+            // Add an event listener to update the avatar on name changes
+            if (userNameSpan) {
+                userNameSpan.addEventListener('input', updateAvatarInitials);
+            }
+
+            // Setup search functionality
+            setupSearch();
         };
     </script>
 </body>
